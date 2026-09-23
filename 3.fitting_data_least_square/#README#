@@ -1,0 +1,107 @@
+# Semana 3 — Lectura de archivos y mínimos cuadrados en Fortran
+
+## Archivos suministrados
+
+* `Semana_03_MinimosCuadrados_Fortran-4.ipynb`: guía de trabajo para Google Colab.
+* `100_mediciones_pendulo_minimos_cuadrados.xlsx`: mediciones originales del péndulo.
+* `script_limpieza_pendulo_estudiantes.py`: script de Python que deben completar para limpiar los datos.
+* `plantilla-2.tex`: plantilla para el informe de una página.
+
+## Objetivo
+
+Implementar en Fortran 2008 un ajuste lineal por mínimos cuadrados para determinar la aceleración de la gravedad a partir de mediciones de un péndulo simple.
+
+El flujo de trabajo será:
+
+```text
+Excel con datos originales
+        ↓
+Limpieza y documentación en Python
+        ↓
+pendulo_limpio.dat
+        ↓
+Lectura y ajuste lineal en Fortran
+        ↓
+Cálculo de g y R²
+        ↓
+Gráfica e informe
+```
+
+## Instrucciones
+
+1. Abra `Semana_03_MinimosCuadrados_Fortran-4.ipynb` en Google Colab.
+2. Ejecute las celdas en orden.
+3. Complete los ejercicios propuestos sobre ciclos, lectura de archivos y mínimos cuadrados.
+4. Cargue en Colab:
+
+   * `100_mediciones_pendulo_minimos_cuadrados.xlsx`;
+   * `script_limpieza_pendulo_estudiantes.py`.
+5. Revise la hoja `Datos_estudiantes` del archivo Excel.
+6. Complete en el script de limpieza:
+
+   * el ángulo máximo aceptado para la aproximación de ángulo pequeño;
+   * las correcciones justificadas;
+   * las exclusiones que requieren interpretación experimental.
+7. Ejecute el script para generar:
+
+   * `pendulo_limpio.dat`;
+   * `informe_limpieza.xlsx`.
+8. Escriba el programa `ajuste_pendulo.f90` siguiendo las indicaciones del notebook.
+9. Compile y ejecute el programa con:
+
+```bash
+gfortran -std=f2008 -Wall -Wextra -fcheck=all \
+-o ajuste_pendulo ajuste_pendulo.f90
+
+./ajuste_pendulo
+```
+
+10. Complete la visualización en Python y ejecute la celda final PASS/FAIL.
+
+## Consideraciones importantes
+
+* No modifique directamente los datos originales en el archivo Excel.
+* Toda corrección o exclusión debe quedar justificada en `informe_limpieza.xlsx`.
+* No excluya una medición únicamente porque se aleja de la tendencia.
+* Un número de oscilaciones diferente de 10 no implica que la medición sea inválida.
+* Convierta la longitud de centímetros a metros antes de calcular \(g\).
+* El cálculo del ajuste debe realizarse en Fortran. Python se utilizará para limpiar los datos y visualizar los resultados.
+* Todos los programas deben incluir comentarios que expliquen sus secciones y las líneas más importantes.
+* Cada estudiante debe poder explicar el funcionamiento de su código.
+
+## Archivos que deben entregar
+
+* `informe_limpieza.xlsx`
+* `pendulo_limpio.dat`
+* `ajuste_pendulo.f90`
+* `resultados_ajuste.dat`
+* salida del programa con los resultados
+* `ajuste_pendulo_y_residuos.png`
+* informe de una página en PDF
+
+El archivo `resultados_ajuste.dat` debe contener una sola fila, sin encabezado, con:
+
+```text
+N  a  b  R2  g
+```
+
+## Informe
+
+El informe debe elaborarse con `plantilla-2.tex`, ocupar una sola página y contener:
+
+1. Contexto físico.
+2. Método.
+3. Resultados e interpretación.
+4. Obstáculo o decisión de implementación.
+5. Conclusión.
+6. Declaración del uso de herramientas de inteligencia artificial.
+
+## Verificación final
+
+Antes de entregar:
+
+* Ejecute todas las celdas necesarias.
+* Compruebe que el programa compila sin errores.
+* Ejecute la celda PASS/FAIL.
+* Incluya en el informe el resumen producido por esa celda.
+* Verifique que todos los archivos solicitados hayan sido generados.
